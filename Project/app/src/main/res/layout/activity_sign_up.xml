@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.activities.SignUpActivity"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/backButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/back"
+        android:tint="@color/colorPrimary"
+        android:background="#00000000"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:onClick="goToLogin"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/logoImage"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/homing_word"
+        android:tint="@color/colorPrimaryDark"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/dataLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logoImage"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/userImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/no_pic"
+            android:tint="@color/colorPrimaryDark"
+            android:paddingEnd="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/nameEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:drawableStart="@drawable/person"
+                android:drawableEnd="@drawable/important"
+                android:drawablePadding="10dp"
+                android:hint="@string/name"
+                android:maxLength="20"
+                android:fontFamily="@font/scc"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/phoneEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:drawableStart="@drawable/phone"
+                android:drawableEnd="@drawable/important"
+                android:drawablePadding="10dp"
+                android:hint="@string/phone"
+                android:inputType="numberSigned"
+                android:fontFamily="@font/scc"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/passwordEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:drawableStart="@drawable/password"
+                android:drawableEnd="@drawable/important"
+                android:drawablePadding="10dp"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/passwordConfirmEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:drawableStart="@drawable/password"
+                android:drawableEnd="@drawable/important"
+                android:drawablePadding="10dp"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/birthdayEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:drawableStart="@drawable/birthday"
+                android:drawablePadding="10dp"
+                android:hint="@string/birthday"
+                android:fontFamily="@font/scc"
+                android:textSize="20sp"
+                android:editable="false"
+                android:clickable="true"
+                android:onClick="popDatePicker"/>
+
+            <EditText
+                android:id="@+id/statusEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:drawableStart="@drawable/status"
+                android:drawablePadding="10dp"
+                android:hint="@string/status"
+                android:maxLength="60"
+                android:fontFamily="@font/scc"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signUpButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_bg"
+        android:fontFamily="@font/scc"
+        android:textColor="@color/white"
+        android:text="@string/get_your_homing"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/dataLayout"
+        android:onClick="signUp"/>
+
+</RelativeLayout>

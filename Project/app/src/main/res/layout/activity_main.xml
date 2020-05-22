@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".views.activities.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/logoLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/logoImage"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:paddingEnd="10dp"
+            android:src="@drawable/homing_logo"/>
+
+        <TextView
+            android:id="@+id/tagText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="It delivers.     "
+            android:layout_alignEnd="@id/logoImage"
+            android:layout_below="@id/logoImage"
+            android:fontFamily="@font/scc"
+            android:textColor="@color/white"
+            android:textSize="28sp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/swipeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Swipe up to continue"
+        android:layout_below="@id/logoLayout"
+        android:paddingTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/scc"/>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/up"
+        android:tint="@color/white"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="10dp"
+        android:layout_below="@id/swipeText"
+        android:clickable="true"
+        android:onClick="goToLogin"/>
+
+</RelativeLayout>

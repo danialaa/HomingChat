@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Homing</string>
+    <string name="phone">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="get_homing">Get To Homing</string>
+    <string name="dont_have">Don\'t have a Homing already?</string>
+    <string name="get_one">GET ONE</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="status">Status</string>
+    <string name="get_your_homing">Get Your Homing</string>
+    <string name="birthday">Birth Date</string>
+    <string name="welcome">Welcome back,</string>
+    <string name="verification_code">Verification Code:</string>
+    <string name="submit">Submit</string>
+    <string name="resend">Resend</string>
+    <string name="verify">Verify</string>
+    <string name="forgot_password">I forgot my password</string>
+    <string name="new_password">New Password</string>
+    <string name="chats">Chats</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_image_link">https://lh3.googleusercontent.com/proxy/LSL3su1OMmMfiAtwvKqC7K6HMDmsf6wVeSVePSirqdZMw6oQDigIZ2NliXTrE7mPjvfd3ktGjQJQwRgikhbQYJBCmXjkStuab23eB9IAHJqFHCiPXSvOIp08NtDpUJG0Dsfbx4g6</string>
+</resources>

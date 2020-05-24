@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.homing.R;
+import com.example.homing.models.helpers.LoadTableTask;
 import com.example.homing.models.helpers.MyGestureListener;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +18,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        LoadTableTask loadTableTask = new LoadTableTask(this);
+        loadTableTask.execute("Users");
+        LoadTableTask loadTableTask2 = new LoadTableTask(this);
+        loadTableTask2.execute("ChatTexts");
 
         MyGestureListener gestureListener = new MyGestureListener();
         gestureListener.setListener(new MyGestureListener.Listener() {

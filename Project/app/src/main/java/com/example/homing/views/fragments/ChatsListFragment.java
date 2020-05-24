@@ -15,10 +15,10 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.example.homing.R;
 import com.example.homing.models.adapters.ChatsListAdapter;
 import com.example.homing.models.helpers.CognitoHelper;
+import com.example.homing.views.activities.HomeActivity;
 
 public class ChatsListFragment extends Fragment {
     private TextView nameText;
-    private CognitoUser user;
     private RecyclerView recyclerView;
 
     public ChatsListFragment() {
@@ -34,12 +34,9 @@ public class ChatsListFragment extends Fragment {
         recyclerView = view.findViewById(R.id.chatListRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new ChatsListAdapter(getActivity()));
+        recyclerView.setAdapter(new ChatsListAdapter(getActivity(), HomeActivity.user.getChats()));
 
-        CognitoHelper helper = CognitoHelper.getINSTANCE(getActivity());
-        user = helper.getUserPool().getCurrentUser();
-
-
+        nameText.setText(HomeActivity.user.getName());
 
         return view;
     }

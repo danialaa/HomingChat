@@ -1,9 +1,10 @@
 package com.example.homing.models.classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Chat {
+public class Chat extends Object implements Serializable {
     private String id;
     private List<Text> texts = new ArrayList<>();
 

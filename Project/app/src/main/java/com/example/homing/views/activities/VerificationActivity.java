@@ -57,7 +57,8 @@ public class VerificationActivity extends AppCompatActivity {
             VerificationHandler resendHandler = new VerificationHandler() {
                 @Override
                 public void onSuccess(CognitoUserCodeDeliveryDetails verificationCodeDeliveryMedium) {
-                    result[0] = "Code resent successfully to " + verificationCodeDeliveryMedium.getDestination();
+                    result[0] = "Code resent successfully to " +
+                            verificationCodeDeliveryMedium.getDestination();
                 }
 
                 @Override
@@ -75,7 +76,7 @@ public class VerificationActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            Log.d("AWS cognito:", "Resend result = " + s);
+            Log.d("AWS Cognito", "Resend result = " + s);
         }
     }
 
@@ -108,7 +109,7 @@ public class VerificationActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            Log.d("AWS cognito:", "Verification result = " + s);
+            Log.d("AWS Cognito", "Verification result = " + s);
         }
     }
 }

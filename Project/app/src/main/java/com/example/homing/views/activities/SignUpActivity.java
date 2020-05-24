@@ -53,10 +53,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         dynamoHelper = DynamoHelper.getINSTANCE(this);
 
-
-
-
-
         dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -93,7 +89,7 @@ public class SignUpActivity extends AppCompatActivity {
             userAttributes.addAttribute("phone_number", phoneEdit.getText().toString());
 
             if (!isImageAdded) {
-                userAttributes.addAttribute("picture", getString(R.string.no_image_link));
+                userAttributes.addAttribute("picture",getString(R.string.no_image_link));
             } else {
                 // save on s3 then bring url
             }
@@ -104,38 +100,44 @@ public class SignUpActivity extends AppCompatActivity {
 
             addUserToDB();
 
-            userPool.signUpInBackground(phoneEdit.getText().toString(), passwordEdit.getText().toString(),
-                    userAttributes, null, signupHandler(userAttributes, userPool));
+            userPool.signUpInBackground(phoneEdit.getText().toString(),
+                    passwordEdit.getText().toString(), userAttributes, null,
+                    signupHandler(userAttributes, userPool));
         } else {
             // dialog that they dont match
         }
     }
 
-    private SignUpHandler signupHandler(final CognitoUserAttributes userAttributes, final CognitoUserPool userPool) {
+    private SignUpHandler signupHandler(final CognitoUserAttributes userAttributes,
+                                        final CognitoUserPool userPool) {
         return new SignUpHandler() {
             @Override
-            public void onSuccess(CognitoUser user, boolean userConfirmed, CognitoUserCodeDeliveryDetails cognitoUserCodeDeliveryDetails) {
+            public void onSuccess(CognitoUser user, boolean userConfirmed,
+                                  CognitoUserCodeDeliveryDetails cognitoUserCodeDeliveryDetails) {
                 if (!userConfirmed) {
-                    Log.d("AWS cognito", "Signup not confirmed " + cognitoUserCodeDeliveryDetails.getDestination());
+                    Log.d("AWS Cognito", "Signup not confirmed " +
+                            cognitoUserCodeDeliveryDetails.getDestination());
 
-                    Intent intent = new Intent(SignUpActivity.this, VerificationActivity.class);
+                    Intent intent = new Intent(SignUpActivity.this,
+                            VerificationActivity.class);
                     intent.putExtra("phone", phoneEdit.getText().toString());
                     startActivity(intent);
                 } else {
-                    Log.d("AWS cognito", "Signup confirmed");
+                    Log.d("AWS Cognito", "Signup confirmed");
                 }
             }
 
             @Override
             public void onFailure(Exception exception) {
-                Log.d("AWS cognito", "Signup failed  " + exception.getMessage());
+                Log.d("AWS Cognito", "Signup failed  " + exception.getMessage());
             }
         };
     }
 
     private void addUserToDB() {
-        User user = new User(SignUpActivity.this, "Users", nameEdit.getText().toString(), phoneEdit.getText().toString(),
-                birthdayEdit.getText().toString(), statusEdit.getText().toString(), getString(R.string.no_image_link), null);
+        User user = new User(nameEdit.getText().toString(), phoneEdit.getText().toString(),
+                birthdayEdit.getText().toString(), statusEdit.getText().toString(),
+                getString(R.string.no_image_link), null);
 
         AddItemTask addItemTask = new AddItemTask(this);
 

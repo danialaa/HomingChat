@@ -8,17 +8,23 @@ import com.amazonaws.mobileconnectors.dynamodbv2.document.datatype.Document;
 import com.amazonaws.mobileconnectors.dynamodbv2.document.datatype.DynamoDBEntry;
 import com.amazonaws.mobileconnectors.dynamodbv2.document.datatype.Primitive;
 import com.amazonaws.services.dynamodbv2.model.ReturnValue;
+import com.example.homing.models.enums.TextType;
+import com.example.homing.models.helpers.DynamoHelper;
+import com.example.homing.models.helpers.GetAllItemsTask;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
-public class User {
+public class User extends Object implements Serializable {
     private String name, phone, birthdate, status, picture;
     private List<Chat> chats = new ArrayList<>();
 
-    public User(String name, String phone, String birthdate, String status, String picture, List<Chat> chats) {
+    public User(String name, String phone, String birthdate, String status, String picture,
+                List<Chat> chats) {
         this.name = name;
         this.phone = phone;
         this.birthdate = birthdate;
@@ -28,6 +34,27 @@ public class User {
     }
 
     public User() {
+    }
+
+    public static List<User> returnUsers(List<Document> documents, Context context) {
+        List<User> users = new ArrayList<>();
+
+        for (int i = 0; i < documents.size(); i++) {
+            users.add(returnUser(documents.get(i), context));
+        }
+
+        return users;
+    }
+
+    public static User returnUser(Document document, Context context) {
+        User user = new User();
+        user.setPhone(document.get("User_ID").asString());
+        user.setName(document.get("name").asString());
+        user.setBirthdate(document.get("birthdate").asString());
+        user.setStatus(document.get("status").asString());
+        user.setPicture(document.get("picture").asString());
+
+        return user;
     }
 
 //    @Override

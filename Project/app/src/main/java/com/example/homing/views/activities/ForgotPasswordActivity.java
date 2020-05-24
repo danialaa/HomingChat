@@ -32,20 +32,22 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         forgotPasswordHandler = new ForgotPasswordHandler() {
             @Override
             public void onSuccess() {
-                Log.d("AWS cognito", "Password changed successfully");
+                Log.d("AWS Cognito", "Password changed successfully");
             }
 
             @Override
             public void getResetCode(ForgotPasswordContinuation continuation) {
                 CognitoUserCodeDeliveryDetails codeDeliveryDetails = continuation.getParameters();
-                Log.d("AWS cognito", "Password change code sent to " + codeDeliveryDetails.getDestination());
+                Log.d("AWS Cognito", "Password change code sent to " +
+                        codeDeliveryDetails.getDestination());
 
                 resultContinuation = continuation;
             }
 
             @Override
             public void onFailure(Exception exception) {
-                Log.d("AWS cognito", "Password change failure.. " + exception.getLocalizedMessage());
+                Log.d("AWS Cognito", "Password change failure.. " +
+                        exception.getLocalizedMessage());
             }
         };
     }
@@ -59,7 +61,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     public void changePassword(View view) {
         if (!passwordEdit.getText().toString().equals(confirmEdit.getText().toString())) {
             //dialog for passwords
-        } else if (!codeEdit.getText().toString().isEmpty() && !passwordEdit.getText().toString().isEmpty()) {
+        } else if (!codeEdit.getText().toString().isEmpty() &&
+                !passwordEdit.getText().toString().isEmpty()) {
             resultContinuation.setPassword(passwordEdit.getText().toString());
             resultContinuation.setVerificationCode(codeEdit.getText().toString());
 

@@ -14,7 +14,7 @@ public class UpdateItemTask extends AsyncTask<Document, Void, Boolean> {
         try {
             //isUpdated = dynamoTable.updateInTable(documents[0]);
         } catch (Exception e) {
-            Log.d("aws", "Update failed: " + e.getMessage());
+            Log.d("Update Item Task", "Update failed: " + e.getMessage());
         }
 
         return isUpdated;

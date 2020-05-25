@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,6 +48,13 @@ public class ChatsListAdapter extends RecyclerView.Adapter<ChatsListAdapter.Chat
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ChatsListViewHolder holder, int position) {
+        holder.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         String userID = chats.get(position).getId().substring(0, 13);
         boolean isFriendFirst = true;
         Text lastText = chats.get(position).getTexts().get(chats.get(position).getTexts().size() - 1);
@@ -65,12 +73,10 @@ public class ChatsListAdapter extends RecyclerView.Adapter<ChatsListAdapter.Chat
         switch (lastText.getType()) {
             case VOICE_NOTE:
                 lastTextContent = "Voice Record";
-
                 break;
 
             case IMAGE:
                 lastTextContent = "Media File";
-
                 break;
 
             default:
@@ -79,17 +85,16 @@ public class ChatsListAdapter extends RecyclerView.Adapter<ChatsListAdapter.Chat
                 if (lastTextContent.length() > 20) {
                     lastTextContent = lastTextContent.substring(0, 20) + "...";
                 }
-
                 break;
         }
 
-
         if ((lastText.getByFirst() && isFriendFirst) || (!isFriendFirst && !lastText.getByFirst())) {
-            //holder.seenStatusImage.set
-
             if (!lastText.getSeen()) {
                 holder.seenStatusImage.setVisibility(View.VISIBLE);
                 holder.seenStatusImage.setImageResource(R.drawable.notification);
+            } else {
+                holder.seenStatusImage.setVisibility(View.INVISIBLE);
+                holder.seenStatusImage.getLayoutParams().width = 0;
             }
         } else {
             holder.seenStatusImage.setVisibility(View.VISIBLE);
@@ -138,12 +143,14 @@ public class ChatsListAdapter extends RecyclerView.Adapter<ChatsListAdapter.Chat
 
     class ChatsListViewHolder extends RecyclerView.ViewHolder {
         private CircleImageView friendImage;
+        private LinearLayout card;
         private TextView friendName, textPreview, textDateTime;
         private AppCompatImageView seenStatusImage;
 
         ChatsListViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            card = itemView.findViewById(R.id.cardLayout);
             friendImage = itemView.findViewById(R.id.contactImage);
             friendName = itemView.findViewById(R.id.contactNameText);
             textPreview = itemView.findViewById(R.id.chatPreviewText);

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.activities.ChatActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true"
+        android:paddingStart="10dp"
+        android:elevation="4dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/backButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/back"
+            android:backgroundTint="@color/white"
+            android:layout_gravity="center_vertical"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/friendImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/no_pic"
+            android:layout_marginStart="10dp"
+            android:src=""/>
+
+        <TextView
+            android:id="@+id/friendNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:paddingStart="20dp"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/scc"
+            android:textColor="@color/white"
+            android:textSize="24sp"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="10dp"
+        android:layout_below="@id/headerLayout"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#CACACA"
+        android:layout_alignParentBottom="true"
+        android:paddingStart="10dp"
+        android:elevation="4dp">
+
+        <EditText
+            android:id="@+id/textEdit"
+            android:layout_width="0dp"
+            android:layout_weight="10"
+            android:layout_height="30dp"
+            android:hint="@string/enter_text"
+            android:paddingStart="20dp"
+            android:background="@drawable/text_bg"
+            android:layout_gravity="center"
+            android:fontFamily="@font/scc"
+            android:textSize="18sp"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/sendButton"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp"
+            android:background="@drawable/right"
+            android:backgroundTint="@color/white"
+            android:clickable="false"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

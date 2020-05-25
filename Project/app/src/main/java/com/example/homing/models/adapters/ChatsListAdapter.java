@@ -84,10 +84,21 @@ public class ChatsListAdapter extends RecyclerView.Adapter<ChatsListAdapter.Chat
         }
 
 
-        if (!chats.get(position).getTexts().get(chats.get(position).getTexts().size() - 1).getSeen() &&
-                ((chats.get(position).getTexts().get(chats.get(position).getTexts().size() - 1).getByFirst() && isFriendFirst) ||
-                        (!isFriendFirst && !(chats.get(position).getTexts().get(chats.get(position).getTexts().size() - 1).getByFirst())))) {
-            holder.notificationImage.setVisibility(View.VISIBLE);
+        if ((lastText.getByFirst() && isFriendFirst) || (!isFriendFirst && !lastText.getByFirst())) {
+            //holder.seenStatusImage.set
+
+            if (!lastText.getSeen()) {
+                holder.seenStatusImage.setVisibility(View.VISIBLE);
+                holder.seenStatusImage.setImageResource(R.drawable.notification);
+            }
+        } else {
+            holder.seenStatusImage.setVisibility(View.VISIBLE);
+
+            if (!lastText.getSeen()) {
+                holder.seenStatusImage.setImageResource(R.drawable.unseen);
+            } else {
+                holder.seenStatusImage.setImageResource(R.drawable.seen);
+            }
         }
 
         holder.textPreview.setText(lastTextContent);
@@ -128,7 +139,7 @@ public class ChatsListAdapter extends RecyclerView.Adapter<ChatsListAdapter.Chat
     class ChatsListViewHolder extends RecyclerView.ViewHolder {
         private CircleImageView friendImage;
         private TextView friendName, textPreview, textDateTime;
-        private AppCompatImageView notificationImage;
+        private AppCompatImageView seenStatusImage;
 
         ChatsListViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -136,7 +147,7 @@ public class ChatsListAdapter extends RecyclerView.Adapter<ChatsListAdapter.Chat
             friendImage = itemView.findViewById(R.id.contactImage);
             friendName = itemView.findViewById(R.id.contactNameText);
             textPreview = itemView.findViewById(R.id.chatPreviewText);
-            notificationImage = itemView.findViewById(R.id.chatNotificationImage);
+            seenStatusImage = itemView.findViewById(R.id.seenStatusImage);
             textDateTime = itemView.findViewById(R.id.chatDateText);
         }
     }

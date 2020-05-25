@@ -64,7 +64,6 @@ public class DynamoHelper {
     }
 
     public List getAllFromTable(List<String> attributes, Table table) {
-        //table.query(new Primitive(""));
         ScanOperationConfig scanOperationConfig = new ScanOperationConfig();
         scanOperationConfig.withAttributesToGet(attributes);
         Search searchResult = table.scan(scanOperationConfig);

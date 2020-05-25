@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:background="@drawable/chat_bg"
-    android:layout_gravity="end"
-    android:paddingStart="10dp"
-    android:paddingTop="10dp">
+    android:gravity="start"
+    android:padding="10dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:background="@drawable/chat_bg"
+        android:backgroundTint="@color/white"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="start"
+        android:padding="10dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/contentText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="content"
-            android:textColor="@color/white"
+            android:text=""
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/chatDateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:padding="5dp"
-            android:text="00:00AA o 00/00/0000"
+            android:paddingTop="5dp"
+            android:text=""
             android:textColor="#BABABA"
             android:textSize="10sp" />
 

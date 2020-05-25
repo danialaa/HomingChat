@@ -1,6 +1,7 @@
 package com.example.homing.models.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     public ChatAdapter(Context context, String firstUser) {
         this.context = context;
         this.firstUser = firstUser;
-        texts = HomeActivity.user.getChats().get(ChatActivity.chatNum).getTexts();
+        this.texts = HomeActivity.user.getChats().get(ChatActivity.chatNum).getTexts();
     }
 
     @NonNull
@@ -55,7 +56,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
     @Override
     public int getItemViewType(int position) {
-        if (texts.get(position).getByFirst() && firstUser == HomeActivity.user.getPhone()) {
+        if (texts.get(position).getByFirst() && firstUser.equals(HomeActivity.user.getPhone())) {
+            return RIGHT;
+        } else if (!texts.get(position).getByFirst() && !firstUser.equals(HomeActivity.user.getPhone())) {
             return RIGHT;
         } else {
             return LEFT;

@@ -3,6 +3,7 @@ package com.example.homing.models.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,6 +92,7 @@ public class ChatsListAdapter extends RecyclerView.Adapter<ChatsListAdapter.Chat
         }
 
         if ((lastText.getByFirst() && isFriendFirst) || (!isFriendFirst && !lastText.getByFirst())) {
+            Log.d("Chat List Adapter", lastText.getByFirst() + " id " + lastText.getId());
             if (!lastText.getSeen()) {
                 holder.seenStatusImage.setVisibility(View.VISIBLE);
                 holder.seenStatusImage.setImageResource(R.drawable.notification);

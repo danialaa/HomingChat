@@ -2,6 +2,7 @@ package com.example.homing.views.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -64,10 +66,14 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (count > 0) {
+                if (s.length() > 0) {
                     sendButton.setClickable(true);
+                    sendButton.getBackground().setTint(ContextCompat.getColor(
+                            ChatActivity.this, R.color.colorPrimaryDark));
                 } else {
                     sendButton.setClickable(false);
+                    sendButton.getBackground().setTint(ContextCompat.getColor(
+                            ChatActivity.this, R.color.white));
                 }
             }
 
@@ -134,7 +140,7 @@ public class ChatActivity extends AppCompatActivity {
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm aa");
         String todayDate = dateFormat.format(date);
         String todayTime = timeFormat.format(date);
-        todayTime.replace(" ", "");
+        todayTime.replace("\\s", "");
 
         document.put("Chat_ID", chat.getId());
         document.put("Text_ID", chat.getTexts().size());
@@ -146,6 +152,7 @@ public class ChatActivity extends AppCompatActivity {
         boolean isByFirst = false;
 
         if (HomeActivity.user.getChats().get(chatNum).getFirstUser() == HomeActivity.user.getPhone()) {
+            Log.d("Chat Activity", "text is by first who is " + HomeActivity.user.getChats().get(chatNum).getFirstUser());
             isByFirst = true;
         }
 

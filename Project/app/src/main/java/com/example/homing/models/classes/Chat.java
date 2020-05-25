@@ -1,5 +1,7 @@
 package com.example.homing.models.classes;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

@@ -3,15 +3,11 @@ package com.example.homing.models.classes;
 import android.content.Context;
 import android.util.Log;
 
-import com.amazonaws.mobileconnectors.dynamodbv2.document.UpdateItemOperationConfig;
 import com.amazonaws.mobileconnectors.dynamodbv2.document.datatype.Document;
-import com.amazonaws.mobileconnectors.dynamodbv2.document.datatype.Primitive;
-import com.amazonaws.services.dynamodbv2.model.ReturnValue;
 import com.example.homing.models.enums.TextType;
 import com.example.homing.models.helpers.DynamoHelper;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -270,7 +266,7 @@ public class Text implements Serializable {
     }
 
     public void setByFirst(boolean isByFirst) {
-        isByFirst = isByFirst;
+        this.isByFirst = isByFirst;
     }
 
     public TextType getType() {

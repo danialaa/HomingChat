@@ -2,6 +2,7 @@ package com.example.homing.models.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +17,10 @@ import com.example.homing.R;
 import com.example.homing.models.classes.Chat;
 import com.example.homing.models.classes.Text;
 import com.example.homing.models.classes.User;
-import com.example.homing.models.enums.TextType;
 import com.example.homing.models.helpers.DynamoHelper;
 import com.example.homing.models.helpers.GetItemTask;
+import com.example.homing.views.activities.ChatActivity;
 import com.example.homing.views.activities.HomeActivity;
-import com.example.homing.views.activities.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,11 +47,13 @@ public class ChatsListAdapter extends RecyclerView.Adapter<ChatsListAdapter.Chat
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull ChatsListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ChatsListViewHolder holder, final int position) {
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(context, ChatActivity.class);
+                intent.putExtra("Chat", position);
+                context.startActivity(intent);
             }
         });
 

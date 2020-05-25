@@ -7,6 +7,7 @@
     tools:context=".views.activities.ChatActivity">
 
     <LinearLayout
+        android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
@@ -21,16 +22,17 @@
             android:layout_height="30dp"
             android:background="@drawable/back"
             android:backgroundTint="@color/white"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:clickable="true"
+            android:onClick="backToHome"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/friendImage"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/no_pic"
-            android:layout_marginStart="10dp"
-            android:src=""/>
+            android:layout_marginStart="10dp" />
 
         <TextView
             android:id="@+id/friendNameText"
@@ -49,10 +51,12 @@
         android:id="@+id/chatRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="10dp"
-        android:layout_below="@id/headerLayout"/>
+        android:padding="10dp"
+        android:layout_below="@id/headerLayout"
+        android:layout_above="@id/bottomLayout"/>
 
     <LinearLayout
+        android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -81,7 +85,8 @@
             android:background="@drawable/right"
             android:backgroundTint="@color/white"
             android:clickable="false"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:onClick="sendText"/>
 
     </LinearLayout>
 

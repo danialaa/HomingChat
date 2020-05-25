@@ -14,8 +14,14 @@ public class AddItemTask extends AsyncTask<Document, Void, Void> {
 
     @Override
     protected Void doInBackground(Document... documents) {
-        DynamoHelper.getINSTANCE(this.context).insertInTable(documents[0],
-                DynamoHelper.getINSTANCE(this.context).getTables().get(0));
+        if (documents[0].containsKey("User_ID")) {
+            DynamoHelper.getINSTANCE(this.context).insertInTable(documents[0],
+                    DynamoHelper.getINSTANCE(this.context).getTables().get(0));
+        } else {
+            DynamoHelper.getINSTANCE(this.context).insertInTable(documents[0],
+                    DynamoHelper.getINSTANCE(this.context).getTables().get(1));
+        }
+
         return null;
     }
 }

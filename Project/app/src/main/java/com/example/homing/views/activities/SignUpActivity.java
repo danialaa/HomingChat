@@ -140,7 +140,6 @@ public class SignUpActivity extends AppCompatActivity {
                 getString(R.string.no_image_link), null);
 
         AddItemTask addItemTask = new AddItemTask(this);
-
         Document document = new Document();
 
         document.put("User_ID", user.getPhone());

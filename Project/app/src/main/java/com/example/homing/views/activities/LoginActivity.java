@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -78,12 +79,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Exception exception) {
                 Log.d("AWS Cognito", "Login Failed.. " + exception.getLocalizedMessage());
+                Toast.makeText(LoginActivity.this, "Unable to login", Toast.LENGTH_LONG).show();
             }
         };
     }
 
     private User getUserData() {
-        User user = new User();
+        User user = null;
 
         List<String> attributes = new ArrayList<>();
         attributes.add("User_ID");

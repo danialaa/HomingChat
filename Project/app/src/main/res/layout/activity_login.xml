@@ -5,18 +5,22 @@
     android:layout_height="match_parent"
     tools:context=".views.activities.LoginActivity">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/logoView"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/homing_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"/>
+
     <LinearLayout
-        android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+        android:layout_below="@id/logoView"
         android:padding="20dp"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/homing_icon"/>
+        android:orientation="vertical"
+        android:layout_marginTop="30dp">
 
         <EditText
             android:id="@+id/phoneEdit"
@@ -59,7 +63,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/button_bg"
             android:backgroundTint="@color/colorPrimaryDark"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:text="@string/get_homing"
             android:textAllCaps="false"
             android:fontFamily="@font/scc"

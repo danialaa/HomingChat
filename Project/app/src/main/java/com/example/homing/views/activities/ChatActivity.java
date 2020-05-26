@@ -109,7 +109,7 @@ public class ChatActivity extends AppCompatActivity {
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm aa");
         String todayDate = dateFormat.format(date);
         String todayTime = timeFormat.format(date);
-        todayTime.replace("\\s", "");
+        todayTime.replaceAll("\\s+", "");
 
         document.put("Chat_ID", chat.getId());
         document.put("Text_ID", chat.getTexts().size());

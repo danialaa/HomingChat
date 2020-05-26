@@ -93,7 +93,12 @@ public class DynamoHelper {
         switch (table.getTableName()) {
             case "Users":
                 Document document = table.getItem(new Primitive(id));
-                return User.returnUser(document, this.context);
+
+                if (document != null) {
+                    return User.returnUser(document, this.context);
+                } else {
+                    return null;
+                }
 
             //case "ChatTexts":
             //    return Text.returnChat(searchResult.getAllResults());

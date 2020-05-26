@@ -6,7 +6,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,19 +19,12 @@ import com.example.homing.R;
 import com.example.homing.models.adapters.ChatAdapter;
 import com.example.homing.models.classes.Chat;
 import com.example.homing.models.classes.Text;
-import com.example.homing.models.classes.User;
 import com.example.homing.models.enums.TextType;
-import com.example.homing.models.helpers.AddItemTask;
-import com.example.homing.models.helpers.DynamoHelper;
-import com.example.homing.models.helpers.GetItemTask;
+import com.example.homing.controllers.AddItemTask;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

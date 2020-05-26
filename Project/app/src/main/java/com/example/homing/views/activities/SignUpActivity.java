@@ -21,10 +21,9 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHan
 import com.amazonaws.mobileconnectors.dynamodbv2.document.datatype.Document;
 import com.example.homing.R;
 import com.example.homing.models.classes.User;
-import com.example.homing.models.helpers.AddItemTask;
+import com.example.homing.controllers.AddItemTask;
 import com.example.homing.models.helpers.CognitoHelper;
 import com.example.homing.models.helpers.DynamoHelper;
-import com.google.gson.Gson;
 
 import java.util.Calendar;
 

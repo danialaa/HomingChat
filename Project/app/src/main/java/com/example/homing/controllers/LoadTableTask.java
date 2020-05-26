@@ -1,7 +1,9 @@
-package com.example.homing.models.helpers;
+package com.example.homing.controllers;
 
 import android.content.Context;
 import android.os.AsyncTask;
+
+import com.example.homing.models.helpers.DynamoHelper;
 
 public class LoadTableTask extends AsyncTask<String, Void, Void> {
     private Context context;

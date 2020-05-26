@@ -1,23 +1,12 @@
 package com.example.homing.models.classes;
 
 import android.content.Context;
-import android.util.Log;
 
-import com.amazonaws.mobileconnectors.dynamodbv2.document.UpdateItemOperationConfig;
 import com.amazonaws.mobileconnectors.dynamodbv2.document.datatype.Document;
-import com.amazonaws.mobileconnectors.dynamodbv2.document.datatype.DynamoDBEntry;
-import com.amazonaws.mobileconnectors.dynamodbv2.document.datatype.Primitive;
-import com.amazonaws.services.dynamodbv2.model.ReturnValue;
-import com.example.homing.models.enums.TextType;
-import com.example.homing.models.helpers.DynamoHelper;
-import com.example.homing.models.helpers.GetAllItemsTask;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.concurrent.ExecutionException;
 
 public class User extends Object implements Serializable {
     private String name, phone, birthdate, status, picture;

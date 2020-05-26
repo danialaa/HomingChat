@@ -1,7 +1,6 @@
 package com.example.homing.views.activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,10 +23,9 @@ import com.example.homing.models.classes.Text;
 import com.example.homing.models.classes.User;
 import com.example.homing.models.helpers.CognitoHelper;
 import com.example.homing.models.helpers.DynamoHelper;
-import com.example.homing.models.helpers.GetAllItemsTask;
-import com.example.homing.models.helpers.GetItemTask;
+import com.example.homing.controllers.GetAllItemsTask;
+import com.example.homing.controllers.GetItemTask;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;

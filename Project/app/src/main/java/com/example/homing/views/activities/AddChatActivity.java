@@ -14,7 +14,7 @@ import com.example.homing.R;
 import com.example.homing.models.adapters.ContactListAdapter;
 import com.example.homing.models.classes.User;
 import com.example.homing.models.helpers.DynamoHelper;
-import com.example.homing.models.helpers.GetItemTask;
+import com.example.homing.controllers.GetItemTask;
 
 import java.util.ArrayList;
 import java.util.List;

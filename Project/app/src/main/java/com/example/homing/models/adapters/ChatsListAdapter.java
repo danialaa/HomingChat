@@ -3,7 +3,6 @@ package com.example.homing.models.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,8 @@ import com.example.homing.models.classes.Chat;
 import com.example.homing.models.classes.Text;
 import com.example.homing.models.classes.User;
 import com.example.homing.models.helpers.DynamoHelper;
-import com.example.homing.models.helpers.GetItemTask;
-import com.example.homing.models.helpers.UpdateItemTask;
+import com.example.homing.controllers.GetItemTask;
+import com.example.homing.controllers.UpdateItemTask;
 import com.example.homing.views.activities.ChatActivity;
 import com.example.homing.views.activities.HomeActivity;
 

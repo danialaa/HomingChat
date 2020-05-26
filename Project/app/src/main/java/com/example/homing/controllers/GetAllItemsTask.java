@@ -1,4 +1,4 @@
-package com.example.homing.models.helpers;
+package com.example.homing.controllers;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.util.Log;
 import com.amazonaws.mobileconnectors.dynamodbv2.document.Table;
 import com.example.homing.models.classes.Chat;
 import com.example.homing.models.classes.User;
+import com.example.homing.models.helpers.DynamoHelper;
 
 import java.util.List;
 

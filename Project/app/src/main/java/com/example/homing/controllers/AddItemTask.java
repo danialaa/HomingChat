@@ -1,9 +1,10 @@
-package com.example.homing.models.helpers;
+package com.example.homing.controllers;
 
 import android.content.Context;
 import android.os.AsyncTask;
 
 import com.amazonaws.mobileconnectors.dynamodbv2.document.datatype.Document;
+import com.example.homing.models.helpers.DynamoHelper;
 
 public class AddItemTask extends AsyncTask<Document, Void, Void> {
     private Context context;

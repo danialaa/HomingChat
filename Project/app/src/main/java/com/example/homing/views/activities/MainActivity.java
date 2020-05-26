@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.homing.R;
-import com.example.homing.models.helpers.LoadTableTask;
+import com.example.homing.controllers.LoadTableTask;
 import com.example.homing.models.helpers.MyGestureListener;
 
 public class MainActivity extends AppCompatActivity {

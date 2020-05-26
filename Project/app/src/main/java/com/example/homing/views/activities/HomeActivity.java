@@ -46,20 +46,25 @@ public class HomeActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_logout:
-                        AlertDialog alertDialog = new AlertDialog.Builder(HomeActivity.this)
-                                .setTitle(getString(R.string.logout_dialog_title))
-                                .setMessage(getString(R.string.logout_dialog_message))
-                                .setPositiveButton(getString(R.string.bye), new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        startActivity(new Intent(HomeActivity.this, LoginActivity.class));
-                                    }
-                                }).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        finish();
-                                    }
-                                }).show();
+                        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(HomeActivity.this);
+                        alertDialog.setTitle(getString(R.string.logout_dialog_title));
+                        alertDialog.setMessage(getString(R.string.logout_dialog_message));
+                        alertDialog.setPositiveButton(getString(R.string.bye), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                            }
+                        });
+                        alertDialog.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+
+                            }
+                        });
+
+                        AlertDialog dialog = alertDialog.create();
+                        dialog.show();
 
                         break;
                 }

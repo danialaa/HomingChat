@@ -112,12 +112,12 @@ public class Text implements Serializable {
 
     public static Document putAttributes(Document original, Document copy) {
         copy.put("Chat_ID", original.get("Chat_ID").asString());
-        copy.put("Text_ID", original.get("Text_ID").asString());
+        copy.put("Text_ID", original.get("Text_ID").asInt());
         copy.put("date", original.get("date").asString());
         copy.put("time", original.get("time").asString());
         copy.put("content", original.get("content").asString());
-        copy.put("seen", original.get("seen").asString());
-        copy.put("byfirst", original.get("byfirst").asString());
+        copy.put("seen", original.get("seen").asBoolean());
+        copy.put("byfirst", original.get("byfirst").asBoolean());
         copy.put("type", original.get("type").asString());
 
         return copy;

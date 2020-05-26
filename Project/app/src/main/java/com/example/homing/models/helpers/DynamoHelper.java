@@ -2,11 +2,9 @@ package com.example.homing.models.helpers;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
-import com.amazonaws.mobileconnectors.dynamodbv2.document.DeleteItemOperationConfig;
 import com.amazonaws.mobileconnectors.dynamodbv2.document.PutItemOperationConfig;
 import com.amazonaws.mobileconnectors.dynamodbv2.document.ScanOperationConfig;
 import com.amazonaws.mobileconnectors.dynamodbv2.document.Search;
@@ -117,7 +115,7 @@ public class DynamoHelper {
             idName = "User_ID";
         } else {
             retrievedItem = table.getItem(new Primitive(item.get("Chat_ID").asString()),
-                    new Primitive(item.get("Text_ID").asString()));
+                    new Primitive(item.get("Text_ID").asInt()));
             idName = "ChatID";
         }
 
@@ -132,7 +130,7 @@ public class DynamoHelper {
             } else {
                 retrievedItem = Text.putAttributes(item, retrievedItem);
                 updatedDocument = table.updateItem(retrievedItem, new Primitive(item.get("Chat_ID").asString()),
-                        new Primitive(item.get("Text_ID").asString()),
+                        new Primitive(item.get("Text_ID").asInt()),
                         new UpdateItemOperationConfig().withReturnValues(ReturnValue.UPDATED_NEW));
             }
 

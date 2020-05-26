@@ -18,13 +18,9 @@ public class UpdateItemTask extends AsyncTask<Document, Void, Boolean> {
 
     @Override
     protected Boolean doInBackground(Document... documents) {
-        boolean isUpdated = false;
+        boolean isUpdated;
 
-        try {
-            isUpdated = DynamoHelper.getINSTANCE(context).updateInTable(documents[0], table);
-        } catch (Exception e) {
-            Log.d("Update Item Task", "Update failed: " + e.getMessage());
-        }
+        isUpdated = DynamoHelper.getINSTANCE(context).updateInTable(documents[0], table);
 
         return isUpdated;
     }

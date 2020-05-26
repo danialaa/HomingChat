@@ -87,6 +87,15 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
             intent.putExtra("Friend", user.getName());
 
             context.startActivity(intent);
+        } else {
+            Chat chat = new Chat(HomeActivity.user.getPhone() + user.getPhone(), null);
+            HomeActivity.user.getChats().add(chat);
+
+            Intent intent = new Intent(context, ChatActivity.class);
+            intent.putExtra("Chat", HomeActivity.user.getChats().size() - 1);
+            intent.putExtra("Friend", user.getName());
+
+            context.startActivity(intent);
         }
     }
 

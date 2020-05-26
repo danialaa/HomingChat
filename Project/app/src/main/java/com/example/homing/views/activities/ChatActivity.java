@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.amazonaws.mobileconnectors.s3.transferutility.*;
 import com.amazonaws.mobileconnectors.dynamodbv2.document.datatype.Document;
 import com.example.homing.R;
 import com.example.homing.models.adapters.ChatAdapter;
@@ -29,9 +31,8 @@ import java.util.Date;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChatActivity extends AppCompatActivity {
-    private AppCompatImageButton backButton, sendButton;
+    private AppCompatImageButton sendButton;
     private CircleImageView friendImage;
-    private TextView friendName;
     private RecyclerView chatRecycler;
     private EditText text;
     public static int chatNum = 0;
@@ -43,10 +44,9 @@ public class ChatActivity extends AppCompatActivity {
 
         chatNum = getIntent().getIntExtra("Chat", 0);
 
-        backButton = findViewById(R.id.backButton);
         sendButton = findViewById(R.id.sendButton);
         friendImage = findViewById(R.id.friendImage);
-        friendName = findViewById(R.id.friendNameText);
+        TextView friendName = findViewById(R.id.friendNameText);
         chatRecycler = findViewById(R.id.chatRecycler);
         text = findViewById(R.id.textEdit);
 
@@ -97,11 +97,11 @@ public class ChatActivity extends AppCompatActivity {
         Document document = new Document();
 
         Date date = Calendar.getInstance().getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm aa");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm aa");
         String todayDate = dateFormat.format(date);
         String todayTime = timeFormat.format(date);
-        todayTime.replaceAll("\\s+", "");
+        todayTime = todayTime.replaceAll(getString(R.string.whitespace_regex), "");
 
         document.put("Chat_ID", chat.getId());
         document.put("Text_ID", chat.getTexts().size());
@@ -112,7 +112,7 @@ public class ChatActivity extends AppCompatActivity {
 
         boolean isByFirst = false;
 
-        if (HomeActivity.user.getChats().get(chatNum).getFirstUser() == HomeActivity.user.getPhone()) {
+        if (HomeActivity.user.getChats().get(chatNum).getFirstUser().equals(HomeActivity.user.getPhone())) {
             Log.d("Chat Activity", "text is by first who is " + HomeActivity.user.getChats().get(chatNum).getFirstUser());
             isByFirst = true;
         }

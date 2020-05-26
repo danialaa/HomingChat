@@ -24,12 +24,16 @@
     <string name="enter_text">Enter Your Text</string>
     <string name="logout_dialog_title">Logout</string>
     <string name="logout_dialog_message">Are you sure you want to logout?</string>
+    <string name="mismatch_dialog_title">Mismatch</string>
+    <string name="mismatch_dialog_message">Your passwords do not match</string>
     <string name="bye">Goodbye</string>
     <string name="cancel">Cancel</string>
     <string name="chat">Chat</string>
     <string name="invite">Invite</string>
+    <string name="got_it">Got it</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_image_link">https://lh3.googleusercontent.com/proxy/LSL3su1OMmMfiAtwvKqC7K6HMDmsf6wVeSVePSirqdZMw6oQDigIZ2NliXTrE7mPjvfd3ktGjQJQwRgikhbQYJBCmXjkStuab23eB9IAHJqFHCiPXSvOIp08NtDpUJG0Dsfbx4g6</string>
+    <string name="whitespace_regex">\\s+</string>
 </resources>

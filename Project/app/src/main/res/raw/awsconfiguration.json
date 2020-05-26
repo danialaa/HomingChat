@@ -1,0 +1,20 @@
+{
+  "Version": "1.0",
+  "CredentialsProvider": {
+    "CognitoIdentity": {
+      "Default": {
+        "PoolId": "us-east-1:83d35d6a-5c8c-4e7f-ad01-46ccb6d3e9b4",
+        "Region": "us-east-1"
+      }
+    }
+  },
+  "IdentityManager": {
+    "Default": { }
+  },
+  "S3TransferUtility": {
+    "Default": {
+      "Bucket": "homingbucket",
+      "Region": "us-east-1"
+    }
+  }
+}

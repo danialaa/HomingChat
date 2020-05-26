@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserCodeDeliveryDetails;
@@ -90,6 +91,7 @@ public class VerificationActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess() {
                     result[0] = "Success";
+                    Toast.makeText(VerificationActivity.this, "Account Confirmed", Toast.LENGTH_LONG).show();
                 }
 
                 @Override

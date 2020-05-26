@@ -39,7 +39,9 @@ dependencies {
     implementation 'com.amazonaws:aws-android-sdk-ddb:2.7.+'
     implementation 'com.amazonaws:aws-android-sdk-ddb-document:2.7.+'
     implementation 'com.amazonaws:aws-android-sdk-s3:2.7.+'
+    implementation ('com.amazonaws:aws-android-sdk-mobile-client:2.7.+@aar') { transitive = true }
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
     //noinspection DuplicatePlatformClasses
-    implementation 'commons-logging:commons-logging:1.1.1'
+    implementation 'commons-logging:commons-logging:1.2'
 }

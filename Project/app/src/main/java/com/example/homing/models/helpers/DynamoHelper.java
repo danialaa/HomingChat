@@ -22,11 +22,10 @@ import com.example.homing.models.classes.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DynamoHelper {
     private Context context;
-    private final String poolID = "us-east-1:83d35d6a-5c8c-4e7f-ad01-46ccb6d3e9b4";
-    private final Regions poolregion = Regions.US_EAST_1;
     private CognitoCachingCredentialsProvider credentialsProvider;
     private AmazonDynamoDBClient dynamoDBClient;
     @SuppressLint("StaticFieldLeak")
@@ -44,7 +43,8 @@ public class DynamoHelper {
     private DynamoHelper(Context context) {
         this.context = context;
 
-        credentialsProvider = new CognitoCachingCredentialsProvider(this.context, poolID, poolregion);
+        CognitoHelper cognitoHelper = CognitoHelper.getINSTANCE(context);
+        credentialsProvider = cognitoHelper.getCredentialsProvider();
         dynamoDBClient = new AmazonDynamoDBClient(credentialsProvider);
         dynamoDBClient.setRegion(Region.getRegion(Regions.US_EAST_1));
     }
@@ -76,8 +76,7 @@ public class DynamoHelper {
                 return User.returnUsers(list, this.context);
 
             case "ChatTexts":
-                List<Chat> chats = Text.returnChats(list);
-                return chats;
+                return (List<Chat>) Text.returnChats(list);
         }
 
         return null;
@@ -116,26 +115,26 @@ public class DynamoHelper {
         Document retrievedItem;
 
         if (item.containsKey("User_ID")) {
-            retrievedItem = table.getItem(new Primitive(item.get("User_ID").asString()));
+            retrievedItem = table.getItem(new Primitive(Objects.requireNonNull(item.get("User_ID")).asString()));
             idName = "User_ID";
         } else {
-            retrievedItem = table.getItem(new Primitive(item.get("Chat_ID").asString()),
-                    new Primitive(item.get("Text_ID").asInt()));
+            retrievedItem = table.getItem(new Primitive(Objects.requireNonNull(item.get("Chat_ID")).asString()),
+                    new Primitive(Objects.requireNonNull(item.get("Text_ID")).asInt()));
             idName = "ChatID";
         }
 
         boolean isUpdated = false;
         Document updatedDocument;
 
-        if (retrievedItem != null) {
+        if (null != retrievedItem) {
             if (idName.equals("User_ID")) {
                 retrievedItem = User.putAttributes(item, retrievedItem);
-                updatedDocument = table.updateItem(retrievedItem, new Primitive(item.get("User_ID").asString()),
+                updatedDocument = table.updateItem(retrievedItem, new Primitive(Objects.requireNonNull(item.get("User_ID")).asString()),
                         new UpdateItemOperationConfig().withReturnValues(ReturnValue.UPDATED_NEW));
             } else {
                 retrievedItem = Text.putAttributes(item, retrievedItem);
-                updatedDocument = table.updateItem(retrievedItem, new Primitive(item.get("Chat_ID").asString()),
-                        new Primitive(item.get("Text_ID").asInt()),
+                updatedDocument = table.updateItem(retrievedItem, new Primitive(Objects.requireNonNull(item.get("Chat_ID")).asString()),
+                        new Primitive(Objects.requireNonNull(item.get("Text_ID")).asInt()),
                         new UpdateItemOperationConfig().withReturnValues(ReturnValue.UPDATED_NEW));
             }
 

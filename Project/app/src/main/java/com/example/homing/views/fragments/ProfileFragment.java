@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.amazonaws.mobileconnectors.s3.transferutility.*;
 import com.example.homing.R;
 import com.example.homing.views.activities.HomeActivity;
 
@@ -24,7 +25,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
     private CircleImageView userImage;
-    private EditText name, phone, birthdate, status;
     private AppCompatButton editButton;
 
     public ProfileFragment() {
@@ -39,13 +39,13 @@ public class ProfileFragment extends Fragment {
         final List<EditText> editTexts = new ArrayList<>();
 
         userImage = view.findViewById(R.id.userImage);
-        name = view.findViewById(R.id.nameEdit);
+        EditText name = view.findViewById(R.id.nameEdit);
         editTexts.add(name);
-        phone = view.findViewById(R.id.phoneEdit);
+        EditText phone = view.findViewById(R.id.phoneEdit);
         editTexts.add(phone);
-        birthdate = view.findViewById(R.id.birthdayEdit);
+        EditText birthdate = view.findViewById(R.id.birthdayEdit);
         editTexts.add(birthdate);
-        status = view.findViewById(R.id.statusEdit);
+        EditText status = view.findViewById(R.id.statusEdit);
         editTexts.add(status);
         editButton = view.findViewById(R.id.editButton);
 

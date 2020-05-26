@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amazonaws.mobileconnectors.s3.transferutility.*;
 import com.example.homing.R;
 import com.example.homing.models.classes.Chat;
 import com.example.homing.models.classes.Text;
@@ -25,6 +26,7 @@ import com.example.homing.views.activities.HomeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -59,7 +61,7 @@ public class ChatsListAdapter extends RecyclerView.Adapter<ChatsListAdapter.Chat
         }
 
         final User friend = getFriend(userID);
-        holder.friendName.setText(friend.getName());
+        holder.friendName.setText(Objects.requireNonNull(friend).getName());
         holder.textDateTime.setText(lastText.getTime() + " ● " + lastText.getDate());
 
         String lastTextContent = "";
@@ -145,9 +147,7 @@ public class ChatsListAdapter extends RecyclerView.Adapter<ChatsListAdapter.Chat
 
         try {
             return (User)getItemTask.get();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
 
@@ -159,7 +159,7 @@ public class ChatsListAdapter extends RecyclerView.Adapter<ChatsListAdapter.Chat
         return chats.size();
     }
 
-    class ChatsListViewHolder extends RecyclerView.ViewHolder {
+    static class ChatsListViewHolder extends RecyclerView.ViewHolder {
         private CircleImageView friendImage;
         private LinearLayout card;
         private TextView friendName, textPreview, textDateTime;

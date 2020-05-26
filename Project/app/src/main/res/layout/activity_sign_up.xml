@@ -37,7 +37,7 @@
         android:layout_centerHorizontal="true"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/userImage"
             android:layout_width="100dp"
             android:layout_height="100dp"

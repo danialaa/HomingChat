@@ -57,32 +57,15 @@ public class User extends Object implements Serializable {
         return user;
     }
 
-//    @Override
-//    public boolean updateInTable(Document item) {
-//        Document retrievedItem = table.getItem(new Primitive(item.get("id").asString()));
-//        boolean isUpdated = false;
-//
-//        if (retrievedItem != null) {
-//            retrievedItem.put("id", item.get("id").asString());
-//            retrievedItem.put("name", item.get("name").asString());
-//            retrievedItem.put("birthdate", item.get("birthdate").asString());
-//            retrievedItem.put("status", item.get("status").asString());
-//
-//            Document updateDocument = table.updateItem(retrievedItem, new Primitive(item.get("id").asString()),
-//                    new UpdateItemOperationConfig().withReturnValues(ReturnValue.UPDATED_NEW));
-//
-//            try {
-//                Log.d("aws", "Updating in table: " + Document.toJson(updateDocument));
-//
-//                isUpdated = true;
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                Log.d("aws", "Updating in table: json error = " + e.getLocalizedMessage());
-//            }
-//        }
-//
-//        return isUpdated;
-//    }
+    public static Document putAttributes(Document original, Document copy) {
+        copy.put("User_ID", original.get("User_ID").asString());
+        copy.put("name", original.get("name").asString());
+        copy.put("birthdate", original.get("birthdate").asString());
+        copy.put("status", original.get("status").asString());
+        copy.put("picture", original.get("picture").asString());
+
+        return copy;
+    }
 
     public String getName() {
         return name;

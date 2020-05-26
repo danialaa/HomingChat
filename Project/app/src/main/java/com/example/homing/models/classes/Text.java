@@ -95,131 +95,33 @@ public class Text implements Serializable {
         return matchingChats;
     }
 
-    public static Chat returnChat(String firstUser, String secondUser, Context context) {
-        DynamoHelper dynamoHelper = DynamoHelper.getINSTANCE(context);
+    public Document objectToDocument(Chat chat, int textNum) {
+        Document document = new Document();
 
-        List<String> attributes = new ArrayList<>();
-        attributes.add("Chat_ID");
-        attributes.add("Text_ID");
-        attributes.add("date");
-        attributes.add("time");
-        attributes.add("content");
-        attributes.add("seen");
-        attributes.add("byfirst");
-        attributes.add("type");
+        document.put("Chat_ID", chat.getId());
+        document.put("Text_ID", chat.getTexts().get(textNum).getId());
+        document.put("date", chat.getTexts().get(textNum).getDate());
+        document.put("time", chat.getTexts().get(textNum).getTime());
+        document.put("content", chat.getTexts().get(textNum).getContent());
+        document.put("seen", chat.getTexts().get(textNum).getSeen());
+        document.put("byfirst", chat.getTexts().get(textNum).getByFirst());
+        document.put("type", "text");
 
-        List<Chat> chats = dynamoHelper.getAllFromTable(attributes, dynamoHelper.getTables().get(1));
-        Chat matchingChat = new Chat();
-
-        for (int i = 0; i < chats.size(); i++) {
-            String firstRetrievedUser = chats.get(i).getId().substring(0, 13);
-            String secondRetrievedUser = chats.get(i).getId().substring(13);
-
-            if ((firstRetrievedUser.equals(firstUser) || firstRetrievedUser.equals(secondUser)) &&
-                    (secondRetrievedUser.equals(firstUser) || secondRetrievedUser.equals(secondUser))) {
-                matchingChat = chats.get(i);
-                break;
-            }
-        }
-
-        return matchingChat;
+        return document;
     }
 
-//    public static Chat returnChat(Document document, Context context) {
-//        Chat chat = new Chat();
-//        chat.setId(document.get("Chat_ID").asString());
-//
-//        for (int u = i + 1; u < documents.size(); u++) {
-//            if (documents.get(u).get("Chat_ID").asString().equals(chat.getId())) {
-//                Text text = new Text();
-//                text.setId(documents.get(u).get("Text_ID").asInt());
-//                text.setDate(documents.get(u).get("date").asString());
-//                text.setTime(documents.get(u).get("time").asString());
-//                text.setContent(documents.get(u).get("content").asString());
-//                text.setSeen(documents.get(u).get("seen").asBoolean());
-//                text.setByFirst(documents.get(u).get("byfirst").asBoolean());
-//
-//                switch (documents.get(u).get("type").asString()) {
-//                    case "text":
-//                        text.setType(TextType.TEXT);
-//
-//                        break;
-//
-//                    case "image":
-//                        text.setType(TextType.IMAGE);
-//
-//                        break;
-//
-//                    case "voicenote":
-//                        text.setType(TextType.VOICE_NOTE);
-//
-//                        break;
-//                }
-//
-//                chat.getTexts().add(text);
-//            }
-//        }
-//
-//        chatIds.add(chat.getId());
-//        chats.add(chat);
-//
-//    }
+    public static Document putAttributes(Document original, Document copy) {
+        copy.put("Chat_ID", original.get("Chat_ID").asString());
+        copy.put("Text_ID", original.get("Text_ID").asString());
+        copy.put("date", original.get("date").asString());
+        copy.put("time", original.get("time").asString());
+        copy.put("content", original.get("content").asString());
+        copy.put("seen", original.get("seen").asString());
+        copy.put("byfirst", original.get("byfirst").asString());
+        copy.put("type", original.get("type").asString());
 
-//    @Override
-//    public boolean updateInTable(Document item) {
-//        Document retrievedItem = table.getItem(new Primitive(item.get("id").asString()));
-//        boolean isUpdated = false;
-//
-//        if (retrievedItem != null) {
-//            retrievedItem.put("id", item.get("id").asString());
-//            retrievedItem.put("date", item.get("date").asString());
-//            retrievedItem.put("time", item.get("time").asString());
-//            retrievedItem.put("isSeen", item.get("isSeen").asBoolean());
-//            retrievedItem.put("content", item.get("content").asString());
-//
-//            switch (item.get("type").asString()) {
-//                case "TextType.IMAGE":
-//                    retrievedItem.put("type", "image");
-//
-//                    break;
-//
-//                case "TextType.VOICE_NOTE":
-//                    retrievedItem.put("type", "voicenote");
-//
-//                    break;
-//
-//                default:
-//                    retrievedItem.put("type", "text");
-//
-//                    break;
-//            }
-//            switch (item.get("isByMe").asString()) {
-//                case "false":
-//                    retrievedItem.put("firstSender", false);
-//
-//                    break;
-//
-//                default:
-//                    retrievedItem.put("firstSender", true);
-//
-//                    break;
-//            }
-//
-//            Document updateDocument = table.updateItem(retrievedItem, new Primitive(item.get("id").asString()),
-//                    new UpdateItemOperationConfig().withReturnValues(ReturnValue.UPDATED_NEW));
-//
-//            try {
-//                Log.d("aws", "Updating in table: " + Document.toJson(updateDocument));
-//
-//                isUpdated = true;
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                Log.d("aws", "Updating in table: json error = " + e.getLocalizedMessage());
-//            }
-//        }
-//
-//        return isUpdated;
-//    }
+        return copy;
+    }
 
     public int getId() {
         return id;

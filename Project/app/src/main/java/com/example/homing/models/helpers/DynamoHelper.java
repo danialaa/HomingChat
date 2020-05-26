@@ -11,6 +11,7 @@ import com.amazonaws.mobileconnectors.dynamodbv2.document.PutItemOperationConfig
 import com.amazonaws.mobileconnectors.dynamodbv2.document.ScanOperationConfig;
 import com.amazonaws.mobileconnectors.dynamodbv2.document.Search;
 import com.amazonaws.mobileconnectors.dynamodbv2.document.Table;
+import com.amazonaws.mobileconnectors.dynamodbv2.document.UpdateItemOperationConfig;
 import com.amazonaws.mobileconnectors.dynamodbv2.document.datatype.Document;
 import com.amazonaws.mobileconnectors.dynamodbv2.document.datatype.Primitive;
 import com.amazonaws.regions.Region;
@@ -107,7 +108,48 @@ public class DynamoHelper {
 //        return table.deleteItem(new Primitive(id), new DeleteItemOperationConfig().withReturnValues(ReturnValue.ALL_OLD));
 //    }
 
-//    public abstract boolean updateInTable(Document item);
+    public boolean updateInTable(Document item, Table table) {
+        String idName;
+        Document retrievedItem;
+
+        if (item.containsKey("User_ID")) {
+            retrievedItem = table.getItem(new Primitive(item.get("User_ID").asString()));
+            idName = "User_ID";
+        } else {
+            retrievedItem = table.getItem(new Primitive(item.get("Chat_ID").asString()),
+                    new Primitive(item.get("Text_ID").asString()));
+            idName = "ChatID";
+        }
+
+        boolean isUpdated = false;
+        Document updatedDocument;
+
+        if (retrievedItem != null) {
+            if (idName.equals("User_ID")) {
+                retrievedItem = User.putAttributes(item, retrievedItem);
+                updatedDocument = table.updateItem(retrievedItem, new Primitive(item.get("User_ID").asString()),
+                        new UpdateItemOperationConfig().withReturnValues(ReturnValue.UPDATED_NEW));
+            } else {
+                retrievedItem = Text.putAttributes(item, retrievedItem);
+                updatedDocument = table.updateItem(retrievedItem, new Primitive(item.get("Chat_ID").asString()),
+                        new Primitive(item.get("Text_ID").asString()),
+                        new UpdateItemOperationConfig().withReturnValues(ReturnValue.UPDATED_NEW));
+            }
+
+            try {
+                Log.d("AWS Dynamo", "Updating in table: " + Document.toJson(updatedDocument));
+
+                isUpdated = true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.d("AWS Dynamo", "Updating in table: json error = " + e.getLocalizedMessage());
+            }
+        } else {
+            Log.d("AWS Dynamo", "retrieved not found");
+        }
+
+        return isUpdated;
+    }
 
     public CognitoCachingCredentialsProvider getCredentialsProvider() {
         return credentialsProvider;

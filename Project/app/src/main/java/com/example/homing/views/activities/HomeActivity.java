@@ -1,9 +1,12 @@
 package com.example.homing.views.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -43,7 +46,20 @@ public class HomeActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_logout:
-                        //logout dialog
+                        AlertDialog alertDialog = new AlertDialog.Builder(HomeActivity.this)
+                                .setTitle(getString(R.string.logout_dialog_title))
+                                .setMessage(getString(R.string.logout_dialog_message))
+                                .setPositiveButton(getString(R.string.bye), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                                    }
+                                }).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).show();
 
                         break;
                 }

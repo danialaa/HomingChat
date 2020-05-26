@@ -1,18 +1,27 @@
 package com.example.homing.models.helpers;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.amazonaws.mobileconnectors.dynamodbv2.document.Table;
 import com.amazonaws.mobileconnectors.dynamodbv2.document.datatype.Document;
 
 public class UpdateItemTask extends AsyncTask<Document, Void, Boolean> {
+    public Context context;
+    public Table table;
+
+    public UpdateItemTask(Context context, Table table) {
+        this.context = context;
+        this.table = table;
+    }
 
     @Override
     protected Boolean doInBackground(Document... documents) {
         boolean isUpdated = false;
 
         try {
-            //isUpdated = dynamoTable.updateInTable(documents[0]);
+            isUpdated = DynamoHelper.getINSTANCE(context).updateInTable(documents[0], table);
         } catch (Exception e) {
             Log.d("Update Item Task", "Update failed: " + e.getMessage());
         }
@@ -25,9 +34,9 @@ public class UpdateItemTask extends AsyncTask<Document, Void, Boolean> {
         super.onPostExecute(isUpdated);
 
         if (isUpdated) {
-            Log.d("aws", "Update successful");
+            Log.d("Update Item Task", "Update successful");
         } else {
-            Log.d("aws", "Update unsuccessful");
+            Log.d("Update Item Task", "Update unsuccessful");
         }
     }
 }

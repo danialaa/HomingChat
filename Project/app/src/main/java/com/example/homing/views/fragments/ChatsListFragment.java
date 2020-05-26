@@ -34,10 +34,20 @@ public class ChatsListFragment extends Fragment {
         recyclerView = view.findViewById(R.id.chatListRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new ChatsListAdapter(getActivity(), HomeActivity.user.getChats()));
+        refreshAdapter();
 
         nameText.setText(HomeActivity.user.getName());
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshAdapter();
+    }
+
+    private void refreshAdapter() {
+        recyclerView.setAdapter(new ChatsListAdapter(getActivity(), HomeActivity.user.getChats()));
     }
 }

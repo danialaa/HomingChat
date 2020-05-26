@@ -7,4 +7,5 @@
     <color name="off_white">#F6F6F6</color>
     <color name="grey">#7E7E7E</color>
     <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
 </resources>

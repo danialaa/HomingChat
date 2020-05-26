@@ -1,14 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.fragments.ProfileFragment">
+    tools:context=".views.fragments.ProfileFragment"
+    android:padding="40dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/dataLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/no_pic"
+            android:tint="@color/colorPrimaryDark"
+            android:paddingEnd="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/nameEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:drawableStart="@drawable/person"
+                android:background="#00000000"
+                android:drawablePadding="10dp"
+                android:hint="@string/name"
+                android:maxLength="20"
+                android:fontFamily="@font/scc"
+                android:textSize="20sp"
+                android:focusable="false"/>
+
+            <EditText
+                android:id="@+id/phoneEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:drawableStart="@drawable/phone"
+                android:background="#00000000"
+                android:drawablePadding="10dp"
+                android:hint="@string/phone"
+                android:inputType="numberSigned"
+                android:fontFamily="@font/scc"
+                android:textSize="20sp"
+                android:focusable="false"/>
+
+            <EditText
+                android:id="@+id/birthdayEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:drawableStart="@drawable/birthday"
+                android:background="#00000000"
+                android:drawablePadding="10dp"
+                android:hint="@string/birthday"
+                android:fontFamily="@font/scc"
+                android:textSize="20sp"
+                android:focusable="false"
+                android:clickable="false"/>
+
+            <EditText
+                android:id="@+id/statusEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:drawableStart="@drawable/status"
+                android:background="#00000000"
+                android:drawablePadding="10dp"
+                android:hint="@string/status"
+                android:maxLength="60"
+                android:fontFamily="@font/scc"
+                android:textSize="20sp"
+                android:focusable="false"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/editButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_bg"
+        android:fontFamily="@font/scc"
+        android:textColor="@color/white"
+        android:text="@string/edit"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:layout_marginTop="80dp"
+        android:layout_below="@id/dataLayout"/>
+
+</RelativeLayout>

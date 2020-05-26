@@ -83,7 +83,7 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        friendName.setText(getFriendName());
+        friendName.setText(getIntent().getStringExtra("Friend"));
 
         chatRecycler.setLayoutManager(new LinearLayoutManager(this));
         chatRecycler.setHasFixedSize(true);
@@ -92,37 +92,6 @@ public class ChatActivity extends AppCompatActivity {
 
     private void refreshAdapter() {
         chatRecycler.setAdapter(new ChatAdapter(this, HomeActivity.user.getChats().get(chatNum).getFirstUser()));
-    }
-
-    private String getFriendName() {
-        User friend = new User();
-        String friendID = "";
-
-        List<String> attributes = new ArrayList<>();
-        attributes.add("User_ID");
-        attributes.add("name");
-        attributes.add("birthdate");
-        attributes.add("status");
-        attributes.add("picture");
-
-        if (HomeActivity.user.getChats().get(chatNum).getFirstUser() == HomeActivity.user.getPhone()) {
-            friendID = HomeActivity.user.getChats().get(chatNum).getSecondUser();
-        } else {
-            friendID = HomeActivity.user.getChats().get(chatNum).getFirstUser();
-        }
-
-        GetItemTask getItemTask = new GetItemTask(ChatActivity.this, attributes, friendID);
-        getItemTask.execute(DynamoHelper.getINSTANCE(ChatActivity.this).getTables().get(0));
-
-        try {
-            friend = (User)getItemTask.get();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return friend.getName();
     }
 
     public void backToHome(View view) {

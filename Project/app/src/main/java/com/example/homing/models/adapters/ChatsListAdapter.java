@@ -20,6 +20,7 @@ import com.example.homing.models.classes.Text;
 import com.example.homing.models.classes.User;
 import com.example.homing.models.helpers.DynamoHelper;
 import com.example.homing.models.helpers.GetItemTask;
+import com.example.homing.models.helpers.UpdateItemTask;
 import com.example.homing.views.activities.ChatActivity;
 import com.example.homing.views.activities.HomeActivity;
 
@@ -49,25 +50,16 @@ public class ChatsListAdapter extends RecyclerView.Adapter<ChatsListAdapter.Chat
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ChatsListViewHolder holder, final int position) {
-        holder.card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ChatActivity.class);
-                intent.putExtra("Chat", position);
-                context.startActivity(intent);
-            }
-        });
-
         String userID = chats.get(position).getId().substring(0, 13);
         boolean isFriendFirst = true;
-        Text lastText = chats.get(position).getTexts().get(chats.get(position).getTexts().size() - 1);
+        final Text lastText = chats.get(position).getTexts().get(chats.get(position).getTexts().size() - 1);
 
         if (userID.equals(HomeActivity.user.getPhone())) {
             userID = chats.get(position).getId().substring(13);
             isFriendFirst = false;
         }
 
-        User friend = getFriend(userID);
+        final User friend = getFriend(userID);
         holder.friendName.setText(friend.getName());
         holder.textDateTime.setText(lastText.getTime() + " ● " + lastText.getDate());
 
@@ -91,11 +83,13 @@ public class ChatsListAdapter extends RecyclerView.Adapter<ChatsListAdapter.Chat
                 break;
         }
 
+        boolean isLastUnseenAndFromFriend = false;
+
         if ((lastText.getByFirst() && isFriendFirst) || (!isFriendFirst && !lastText.getByFirst())) {
-            Log.d("Chat List Adapter", lastText.getByFirst() + " id " + lastText.getId());
             if (!lastText.getSeen()) {
                 holder.seenStatusImage.setVisibility(View.VISIBLE);
                 holder.seenStatusImage.setImageResource(R.drawable.notification);
+                isLastUnseenAndFromFriend = true;
             } else {
                 holder.seenStatusImage.setVisibility(View.INVISIBLE);
                 holder.seenStatusImage.getLayoutParams().width = 0;
@@ -116,6 +110,27 @@ public class ChatsListAdapter extends RecyclerView.Adapter<ChatsListAdapter.Chat
         //    Picasso.get().load(userList.get(position).getUserimage())
         //            .into(holder.friendImage);
         //}
+
+        final boolean finalIsLastUnseenAndFromFriend = isLastUnseenAndFromFriend;
+        holder.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ChatActivity.class);
+                intent.putExtra("Chat", position);
+                intent.putExtra("Friend", friend.getName());
+
+                if (finalIsLastUnseenAndFromFriend) {
+                    chats.get(position).getTexts().get(chats.get(position).getTexts().size() - 1).setSeen(true);
+
+                    UpdateItemTask updateItemTask = new UpdateItemTask(context,
+                            DynamoHelper.getINSTANCE(context).getTables().get(1));
+                    updateItemTask.execute(lastText.objectToDocument(chats.get(position),
+                            chats.get(position).getTexts().size() - 1));
+                }
+
+                context.startActivity(intent);
+            }
+        });
     }
 
     private User getFriend(String id) {

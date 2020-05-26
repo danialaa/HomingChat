@@ -60,7 +60,7 @@ public class ProfileFragment extends Fragment {
                 for (EditText editText : editTexts) {
                     if (editButton.getText().toString().equals(getString(R.string.edit))) {
                         editText.setFocusable(true);
-                        editText.setBackground(null);
+                        editText.setBackgroundResource(android.R.drawable.editbox_background);
                         editButton.setText(getString(R.string.submit));
                     } else {
                         editText.setFocusable(false);

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.amazonaws:aws-android-sdk-ddb-document:2.7.7@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-ddb-document/2.7.7/bf30d9e09a00d49160cf6ccb9f29ec39dccd6574/aws-android-sdk-ddb-document-2.7.7.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-ddb-document/2.7.7/ee95ea30a5a73e957db53e38fdc1272fa0fb7349/aws-android-sdk-ddb-document-2.7.7-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-ddb-document/2.7.7/1ce8c930340fd99867152533c80fd6dc02a1e8b6/aws-android-sdk-ddb-document-2.7.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
